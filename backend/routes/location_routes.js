@@ -10,4 +10,7 @@ router.get('/', location_controller.getLocations);
 router.get('/:id', location_controller.getOneLocation);
 router.put('/updateLocation/:id', location_controller.updateLocation);
 router.delete('/deleteLocation/:id', location_controller.deleteLocation);
+router.post('/:id/device/addDevice', location_controller.addDeviceToLocation);
+router.delete('/:lId/device/:dId', location_controller.DeleteOneDevice);
+
 module.exports=router;
