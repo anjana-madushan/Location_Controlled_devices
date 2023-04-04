@@ -1,8 +1,32 @@
 const Location = require("../model/location");
+const joi = require("joi")
 
 const addNewLocation = async(req, res, next)=>{
 
     const {name, address, phone, devices} = req.body;
+
+    if(!name){
+        res.status(400).json({message:"You should enter the name of the location."})
+    }
+
+    const schema = joi.object({
+        name:joi.string().required(),
+        address:joi.string().required(),
+        phone:joi.string().required().custom((value, helpers)=>{
+            const validPhoneNo = /^(\+\d{1,3}[- ]?)?\d{10}$/.test(value);
+                if (!validPhoneNo) {
+                    return helpers.message('Invalid phone number');
+                }
+        }), 
+        devices:joi.array()
+    })
+
+    const {err, value} = schema.validate({name, address, phone, devices})
+
+    if (err) {
+        return res.status(400).json({ message: err.details[0].message });
+    }
+
     let location;
     try{
         location = new Location({
@@ -67,9 +91,26 @@ const getOneLocation = async(req, res, next) =>{
 
 const addDeviceToLocation = async(req, res, next) =>{
     const id = req.params.id;
-
+    const {serialNumber, type, image, status} = req.body
+    if(!serialNumber || !type || !image){
+        res.status(400).json({message:"check serial no, type, or image fields cannot empty"})
+    }
     let location;
     let device;
+
+    const schema = joi.object({
+        serialNumber:joi.string(),
+        type:joi.string().valid('pos', 'kisok', 'signage'),
+        image:joi.string(), 
+        status:joi.string().valid('active', 'inactive')
+    })
+
+    const {err, value} = schema.validate({serialNumber, type, image, status})
+
+    if (err) {
+        return res.status(400).json({ message: err.details[0].message });
+    }
+
 
     try{
         location = await Location.findById(id)
@@ -78,8 +119,6 @@ const addDeviceToLocation = async(req, res, next) =>{
             res.status(404).json({message:"Not Found this Location"})
         }
 
-
-        const {serialNumber, type, image, status} = req.body
         device = {
             serialNumber, 
             type, 

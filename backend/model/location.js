@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const deviceSchema = new mongoose.Schema({
     serialNumber: {
       type: String,
-      required: true
+      required: true,
+      unique:true
     },
     type: {
       type: String,
@@ -18,8 +19,7 @@ const deviceSchema = new mongoose.Schema({
     },
     status: {
       type: String,
-      enum: ['active', 'inactive'],
-      required: true
+      enum: ['active', 'inactive']
     }
   });
 
@@ -33,9 +33,7 @@ const locationSchema = new Schema({
         type:String,
     }, 
     phone:{
-        type:Number,
-        unique : true,
-        required:true
+        type:String
     }, 
     devices:[{
         type:deviceSchema
