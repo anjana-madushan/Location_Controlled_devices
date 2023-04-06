@@ -1,8 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios' 
 import {useNavigate, useParams} from "react-router-dom"
 import './styles/styles.css'
+
+import swal from 'sweetalert';
 
 const AddDevice = () => {
     const navigate = useNavigate();
@@ -14,10 +16,34 @@ console.log(locationId)
    const [type, setType] = useState('')
    const [image, setImage] = useState('')
    const [status, setStatus] = useState('')
+   const [location, setLocation] = useState(null)
 
-   
+   useEffect(()=>{
+    const getLocation = async() => {
+        try {
+            const response = await axios.get(`http://localhost:8000/location/${locationId}`);
+            setLocation(response.data.location)
+          } catch (err) {
+            console.log(err)
+          }
+        }
+    getLocation()
+}, [locationId])
+
+
    const handleSubmit = async(e) => {
     e.preventDefault();
+
+
+  
+      // Check if the serial number already exists in the devices array
+      const isSerialNumberExists = location.devices.some(device => device.serialNumber === serialNumber)
+      if (isSerialNumberExists) {
+        swal({
+          title:"Check the serail No. This device already in this location",
+        icon:"error"})
+        return
+      }
 
     const device = {serialNumber, type, image, status}
 
@@ -27,6 +53,11 @@ console.log(locationId)
     }
 
     await axios.post(`http://localhost:8000/location/${locationId}/device/addDevice`, device).then(()=>{
+
+    swal({
+      title:"Device added to the location.",
+      icon:"success"
+    })
         
         navigate("/");
       }).catch((err)=>{

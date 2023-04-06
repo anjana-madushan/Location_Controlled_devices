@@ -4,6 +4,8 @@ import axios from 'axios'
 import {useNavigate} from "react-router-dom"
 import './styles/styles.css'
 
+import swal from 'sweetalert';
+
 const AddLocation = () => {
     const navigate = useNavigate();
    const [name, setName] = useState('')
@@ -27,6 +29,13 @@ const AddLocation = () => {
     const location = {name, address, phone}
 
     axios.post('http://localhost:8000/location/addLocation', location).then(()=>{
+      swal({
+        title: "Item Added!",
+        
+        icon: "success"
+        
+       
+      })
         
         navigate("/");
       }).catch((err)=>{

@@ -48,7 +48,7 @@ return (
   </div>
     
 
-    <h1 className='location_devices'><center>Devices</center></h1>
+    <h2 className='location_devices'><center>DEVICES</center></h2>
     {location.devices && location.devices.map((device)=>(
       <div className="device-details">
       <div className="image-container">

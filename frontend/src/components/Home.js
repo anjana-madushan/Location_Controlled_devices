@@ -14,7 +14,7 @@ const Home = () => {
     
     const handleDelete = async(id) => {
 
-        try{
+        
 
           await axios.delete(`http://localhost:8000/location/deleteLocation/${id}`)
           .then((res)=>{
@@ -23,9 +23,9 @@ const Home = () => {
             setLocations(filteredLocations)
           }
           
-        )}catch(err){
+        ).catch((err)=>{
           console.log(err)
-        }
+        })
       }
 
     useEffect(()=>{
@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <div className='allLocations'>
 
-      <h1><center>All Locations</center></h1>
+      <h1><center>LOCATIONS</center></h1>
 
 <table className="table">
     <thead className="thead-dark">  
