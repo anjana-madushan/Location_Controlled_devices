@@ -1,22 +1,34 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Home = () => {
 
     const [locations, setLocations] = useState([]);
 
     const navigate = useNavigate();
-
     
+    const handleDelete = (id) => {
 
-    
-    
-    const handleDelete = async(id) => {
+        swal({title: "Are you sure?",
+        text: "You want to delete this Location?",
+        icon: "warning",
+        dangerMode: true
 
+      }).then((willDelete)=>{
+
+        if(willDelete){
+          swal("location is deleted", {
+            icon: "success",
+            buttons: false,
+            timer:2000,
+
+          })
         
+      
 
-          await axios.delete(`http://localhost:8000/location/deleteLocation/${id}`)
+          axios.delete(`http://localhost:8000/location/deleteLocation/${id}`)
           .then((res)=>{
             const filteredLocations = locations.filter(location => location.id !== id)
 
@@ -26,7 +38,15 @@ const Home = () => {
         ).catch((err)=>{
           console.log(err)
         })
-      }
+      }else{
+        swal({
+        text:"Your item is saved!",
+        buttons: false,
+        timer:2000
+      });
+    }
+  })
+}
 
     useEffect(()=>{
 
@@ -77,7 +97,7 @@ const Home = () => {
               <button onClick={()=>handleDelete(location.id)}className="btn btn-danger p-1 me-2">Delete</button>
               <button onClick={()=>navigate(`/${location.id}/device/addDevice`)} className="btn btn-primary p-1 me-2">Add Device</button>
             </center></td>
-</tr>
+            </tr>
  ))}
 
 </tbody>
