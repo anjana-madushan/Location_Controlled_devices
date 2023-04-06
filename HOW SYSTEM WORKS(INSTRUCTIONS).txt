@@ -1,0 +1,22 @@
+HOW SYSTEM WORKS(INSTRUCTIONS)
+•	When the application runs it will first open the HOME page. 
+•	On the home page, all the locations are displayed with their name, address, and phone no. 
+•	Also, there are 3 buttons for each location. view, delete, and add devices. 
+
+•	Also in the navigation bar, there are 2 options.
+•	Home and add Location.
+•	In the home option will navigate back to the home page.
+•	If add Location is clicked, it will navigate the user to add location page where users can enter the new Locations.
+•	In the Add Location page, there are 3 inputs. Name, address, and phone no. Also, I include validations for input fields.
+•	After the user fills in the form successfully and clicks the add location button, the user will be redirected to the home page again.
+•	Now users can see entered location details on the home page.
+
+•	To insert devices for a location, the user can click the add device button of the specific location.
+•	It will redirect the user to the Add Device page.
+•	in there, the user can insert new devices for that location.
+•	But here the user cannot insert the existing serial numbers again. if the user does it will display an error message.
+•	Then after the user fills in the form successfully and clicks the add Device button, he will again be redirected to the home page.
+
+
+•	To view all the devices in a specific location, the user can click the view button, and there, the user can see all the devices in that location.
+•	Also, if the user wants to delete a device from that location he can click the delete device button.

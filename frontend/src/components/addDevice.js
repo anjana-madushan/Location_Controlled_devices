@@ -48,7 +48,10 @@ console.log(locationId)
     const device = {serialNumber, type, image, status}
 
     if(!serialNumber||!type||!image||!status){
-      alert("Please Fill all the input fields")
+      swal({
+        title:"Please Fill all the input fields",
+        icon:"warning"
+      })
       return;
     }
 
@@ -78,7 +81,7 @@ console.log(locationId)
     <div className="form-group">
       <label htmlFor="Type">Type</label>
       <select onChange = {(e)=>setType(e.target.value)} value={type} name='type' className="form-control" id="type" placeholder="Enter type">
-            <option value="">Select a Type</option>
+            <option>Select a Type</option>
             <option value="pos">POS</option>
             <option value="kiosk">KIOSK</option>
             <option value="signage">SIGNAGE</option>
@@ -94,7 +97,7 @@ console.log(locationId)
     <div className="form-group">
       <label htmlFor="image">Status</label>
       <select onChange = {(e)=>setStatus(e.target.value)} value={status} name='status' className="form-control" id="status" placeholder="Enter Status">
-            <option value="">Select the Status of the device</option>
+            <option>Select the Status of the device</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
       </select>

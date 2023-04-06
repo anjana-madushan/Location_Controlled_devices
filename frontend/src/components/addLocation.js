@@ -18,19 +18,26 @@ const AddLocation = () => {
     e.preventDefault();
 
     if(!name||!address||!phone){
-      alert("Please Fill all the input fields")
+      swal({
+        title:"Please Fill all the input fields",
+        icon:"warning"
+      })
       return;
     }
 
     if(phone.length !== 10){
-      alert("phone no should have 10 numbers")
+      swal({
+        title:"phone no should have 10 numbers",
+        icon:"warning"
+      })
+      
       return;
     }
     const location = {name, address, phone}
 
     axios.post('http://localhost:8000/location/addLocation', location).then(()=>{
       swal({
-        title: "Item Added!",
+        title: "Location Added!",
         
         icon: "success"
         

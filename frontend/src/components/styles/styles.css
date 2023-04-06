@@ -2,11 +2,17 @@
 /* View Single Location page Stylings*/
 img{
   width: 300px;
-  padding-top: 25px;
   height: auto;
   margin-bottom: 10px;
   width: 300px;
 }
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .location_details{
     display: flex;
