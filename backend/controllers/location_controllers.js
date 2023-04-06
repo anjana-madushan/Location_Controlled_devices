@@ -12,12 +12,7 @@ const addNewLocation = async(req, res, next)=>{
     const schema = joi.object({
         name:joi.string().required(),
         address:joi.string().required(),
-        phone:joi.string().required().custom((value, helpers)=>{
-            const validPhoneNo = /^(\+\d{1,3}[- ]?)?\d{10}$/.test(value);
-                if (!validPhoneNo) {
-                    return helpers.message('Invalid phone number');
-                }
-        }), 
+        phone:joi.string().required(),
         devices:joi.array()
     })
 
@@ -120,6 +115,16 @@ const addDeviceToLocation = async(req, res, next) =>{
         if(!location){
             res.status(404).json({message:"Not Found this Location"})
         }
+
+        const deviceExists = location.devices.some(
+            (device) => device.serialNumber === serialNumber
+          );
+      
+          if (deviceExists) {
+            return res
+              .status(400)
+              .json({ message: "Device with this serial number already exists" });
+          }
 
         device = {
             serialNumber, 

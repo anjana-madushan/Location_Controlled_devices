@@ -24,9 +24,10 @@ const SingleLocation = () => {
   const handleDelete = async(device_id)=>{
     try{
 await axios.delete(`http://localhost:8000/location/${id}/device/${device_id}`)
+
 setLocation(prevState=>{
   const filteredDevices = prevState.devices.filter(device=> device.id !== device._id);
-  window.location.reload()
+  window.location.reload()//reloading page 
   return {...prevState, devices:filteredDevices}
 
   

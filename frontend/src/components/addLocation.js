@@ -10,9 +10,20 @@ const AddLocation = () => {
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
 
+   
+
    const handleSubmit = (e) => {
     e.preventDefault();
 
+    if(!name||!address||!phone){
+      alert("Please Fill all the input fields")
+      return;
+    }
+
+    if(phone.length !== 10){
+      alert("phone no should have 10 numbers")
+      return;
+    }
     const location = {name, address, phone}
 
     axios.post('http://localhost:8000/location/addLocation', location).then(()=>{
