@@ -10,15 +10,24 @@ const Home = () => {
 
     
 
-    /*
     
-    const handleDelete = async(_id) => {
+    
+    const handleDelete = async(id) => {
 
-        await axios.delete(`http://localhost:8000/location/deleteLocation/${_id}`)
-        .then((res)=>res.data)
-        .then(()=>navigate("/"));
+        try{
+
+          await axios.delete(`http://localhost:8000/location/deleteLocation/${id}`)
+          .then((res)=>{
+const filteredLocations = locations.filter(location => location.id !== id)
+
+setLocations(filteredLocations)
+          }
+          
+        )}catch(err){
+          console.log(err)
+        }
       }
-*/
+
     useEffect(()=>{
 
         
@@ -63,13 +72,13 @@ const Home = () => {
              <td>{location.name}</td>
              <td>{location.address}</td>
              <td>{location.phone}</td>
-             <td><center><button onClick={()=>navigate(`/${location.id}`)} className="btn btn-success p-1 me-2">View</button>
+             <td><center><button onClick={()=>navigate(`/${location.id}`)} className="btn btn-info p-1 me-2">View</button>
 
-<button className="btn btn-danger p-1">Delete</button>
-<button onClick={()=>navigate(`/${location.id}/device/addDevice`)}>Add Device</button>
+<button onClick={()=>handleDelete(location.id)}className="btn btn-danger p-1 me-2">Delete</button>
+<button onClick={()=>navigate(`/${location.id}/device/addDevice`)} className="btn btn-primary p-1 me-2">Add Device</button>
 </center>
 </td>
-             </tr>
+</tr>
  ))}
 
 </tbody>

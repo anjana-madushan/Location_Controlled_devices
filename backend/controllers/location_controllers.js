@@ -79,6 +79,7 @@ const getOneLocation = async(req, res, next) =>{
     try{
         location = await Location.findById(id).populate('devices');
         console.log(id)
+        
     }catch(err){
         console.log(err)
     }
