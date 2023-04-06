@@ -77,7 +77,8 @@ const getOneLocation = async(req, res, next) =>{
     let location;
 
     try{
-        location = await Location.findById(id);
+        location = await Location.findById(id).populate('devices');
+        console.log(id)
     }catch(err){
         console.log(err)
     }
@@ -199,7 +200,7 @@ const deleteLocation = async(req, res, next) =>{
     }
 
     if(!location){
-        res.status.json({message:"Unable to delete the Location"})
+        res.status(400).json({message:"Unable to delete the Location"})
     }
     else{
         res.status(200).json({message:"Location deleted successfully"})

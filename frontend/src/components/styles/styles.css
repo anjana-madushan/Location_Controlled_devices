@@ -1,0 +1,12 @@
+.form{
+    padding:30px;
+    margin: 10px;
+    border-color: aquamarine;
+    border-style: solid;
+    border: 10px;
+}
+
+.form-control{
+    padding:10px;
+}
+

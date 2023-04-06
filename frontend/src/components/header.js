@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand>LOCATION-CONTROLLER</Navbar.Brand>
-          <Nav className="me-auto">
+          <Nav>
             <Nav.Link as={Link} to='/'>HOME</Nav.Link>
             <Nav.Link as={Link} to='/addLocation'>ADD LOCATION</Nav.Link>
             <Nav.Link as={Link} to='/psfg'>Pricing</Nav.Link>

@@ -5,8 +5,7 @@ const Schema = mongoose.Schema;
 const deviceSchema = new mongoose.Schema({
     serialNumber: {
       type: String,
-      required: true,
-      unique:true
+      required: true
     },
     type: {
       type: String,

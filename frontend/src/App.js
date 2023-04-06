@@ -5,6 +5,7 @@ import AddLocation from './components/addLocation'
 import Header from './components/header'
 import Home from './components/Home';
 import SingleLocation from './components/singleLocation';
+import AddDevice from './components/addDevice';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Route path="/addLocation" element={<AddLocation />}/>
       <Route path="/" element={<Home />}/>
       <Route path="/:id" element={<SingleLocation />}/>
+      <Route path="/:locationId/device/addDevice" element={<AddDevice />}/>
     </Routes>
     </BrowserRouter>
   )
