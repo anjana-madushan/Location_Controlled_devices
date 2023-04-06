@@ -57,7 +57,7 @@ const AddLocation = () => {
     </div>
 <br/>
 
-     <button type="submit" className="btn btn-primary">Submit</button>
+     <button type="submit" className="btn btn-primary"><center>ADD LOCATION</center></button>
   </form>
   </div>
   )

@@ -12,7 +12,6 @@ const Header = () => {
           <Nav>
             <Nav.Link as={Link} to='/'>HOME</Nav.Link>
             <Nav.Link as={Link} to='/addLocation'>ADD LOCATION</Nav.Link>
-            <Nav.Link as={Link} to='/psfg'>Pricing</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

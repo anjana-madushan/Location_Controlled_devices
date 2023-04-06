@@ -18,9 +18,9 @@ const Home = () => {
 
           await axios.delete(`http://localhost:8000/location/deleteLocation/${id}`)
           .then((res)=>{
-const filteredLocations = locations.filter(location => location.id !== id)
+            const filteredLocations = locations.filter(location => location.id !== id)
 
-setLocations(filteredLocations)
+            setLocations(filteredLocations)
           }
           
         )}catch(err){
@@ -50,16 +50,16 @@ setLocations(filteredLocations)
     }, [])
 
   return (
-    <div>
+    <div className='allLocations'>
 
       <h1><center>All Locations</center></h1>
 
 <table className="table">
     <thead className="thead-dark">  
     <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
+            <th><center>Name</center></th>
+            <th><center>Address</center></th>
+            <th><center>Phone</center></th>
             <th><center>Action</center></th>
     </tr>
     </thead>
@@ -69,15 +69,14 @@ setLocations(filteredLocations)
 <tbody>
 {locations.map((location, key)=>(
              <tr key={key}>
-             <td>{location.name}</td>
-             <td>{location.address}</td>
-             <td>{location.phone}</td>
-             <td><center><button onClick={()=>navigate(`/${location.id}`)} className="btn btn-info p-1 me-2">View</button>
-
-<button onClick={()=>handleDelete(location.id)}className="btn btn-danger p-1 me-2">Delete</button>
-<button onClick={()=>navigate(`/${location.id}/device/addDevice`)} className="btn btn-primary p-1 me-2">Add Device</button>
-</center>
-</td>
+             <td><center>{location.name}</center></td>
+             <td><center>{location.address}</center></td>
+             <td><center>{location.phone}</center></td>
+             <td><center>
+              <button onClick={()=>navigate(`/${location.id}`)} className="btn btn-info p-1 me-2">View</button>
+              <button onClick={()=>handleDelete(location.id)}className="btn btn-danger p-1 me-2">Delete</button>
+              <button onClick={()=>navigate(`/${location.id}/device/addDevice`)} className="btn btn-primary p-1 me-2">Add Device</button>
+            </center></td>
 </tr>
  ))}
 

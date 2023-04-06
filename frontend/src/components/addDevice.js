@@ -49,7 +49,7 @@ console.log(locationId)
       <select onChange = {(e)=>setType(e.target.value)} value={type} name='type' className="form-control" id="type" placeholder="Enter type">
             <option value="">Select a Type</option>
             <option value="pos">POS</option>
-            <option value="kiosk">KISOK</option>
+            <option value="kiosk">KIOSK</option>
             <option value="signage">SIGNAGE</option>
       </select>
     </div>
@@ -70,7 +70,7 @@ console.log(locationId)
     </div>
 <br/>
 
-     <button type="submit" className="btn btn-primary">Submit</button>
+     <button type="submit" className="btn btn-primary">ADD DEVICE</button>
   </form>
   </div>
   )
